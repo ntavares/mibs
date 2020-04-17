@@ -1,0 +1,148 @@
+ENGENIUS-PORTAVITA-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+	MODULE-IDENTITY, OBJECT-TYPE, NOTIFICATION-TYPE, OBJECT-IDENTITY,
+	enterprises, IpAddress, Counter32, Gauge32, TimeTicks, Integer32,
+	Counter64
+            	FROM SNMPv2-SMI
+
+	DisplayString, MacAddress, TruthValue, TimeStamp,
+	TimeInterval, DateAndTime, RowStatus, TEXTUAL-CONVENTION
+	FROM SNMPv2-TC
+
+	MODULE-COMPLIANCE, OBJECT-GROUP
+	FROM SNMPv2-CONF
+
+	ifIndex
+	    FROM RFC1213-MIB
+
+        InetAddressType, InetAddress
+           FROM INET-ADDRESS-MIB;
+
+engeniusmesh MODULE-IDENTITY
+    LAST-UPDATED "20200417000Z"
+    ORGANIZATION "Nuno Tavares, Portavita"
+    CONTACT-INFO
+       "Nuno Tavares
+     	  Website: https://github.com/ntavares/"
+    DESCRIPTION
+        "MIB Definition used in the EnGenius Mesh Product Line:
+         iso(1).org(3).dod(6).internet(1).private(4).enterprises(1).
+         engenius(14125).engeniusmesh(1)"
+
+    REVISION 	"20200417000Z"
+    DESCRIPTION	"First Release for client purpose"
+
+    ::= { engenius 1 }
+
+engenius 				OBJECT IDENTIFIER ::= { enterprises 14125 }
+
+nodeConfiguration		OBJECT IDENTIFIER ::= { engeniusmesh 2 }
+nodeConfigurationMulticast	OBJECT IDENTIFIER ::= { nodeConfiguration 47 }
+multicastActive	            OBJECT IDENTIFIER ::= { nodeConfigurationMulticast 1 }
+
+
+wlanClientTableEntry OBJECT-TYPE
+    SYNTAX WLANClientTableEntry
+   	MAX-ACCESS not-accessible
+    	STATUS current
+    	DESCRIPTION
+	"Represent the entry in the wlan table."
+    ::= { multicastActive 1 }
+
+WLANClientTableEntry::=
+    SEQUENCE
+    {
+	wlanClientMacAddr		 		DisplayString,
+	wlanClientUknown3				DisplayString,
+	wlanClientUknown4				DisplayString,
+	wlanClientUknown5				DisplayString,
+	wlanClientUknown6				INTEGER,
+	wlanClientUknown7				INTEGER,
+	wlanClientUknown8				INTEGER,
+	wlanClientUknown9				INTEGER,
+	wlanClientUknown10				INTEGER,
+	wlanClientUknown11				INTEGER,
+	wlanClientUknown12				INTEGER
+    }
+
+
+wlanClientMacAddr OBJECT-TYPE
+	SYNTAX DisplayString
+	MAX-ACCESS read-only
+    	STATUS current
+    	DESCRIPTION
+	"The Client MAC Addr"
+    ::= { wlanClientTableEntry 2 }
+
+wlanClientUknown3 OBJECT-TYPE
+	SYNTAX DisplayString
+	MAX-ACCESS read-only
+    	STATUS current
+    	DESCRIPTION "Unknown"
+    ::= { wlanClientTableEntry 3 }
+
+wlanClientUknown4 OBJECT-TYPE
+    SYNTAX DisplayString
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "Unknown"
+    ::= { wlanClientTableEntry 4 }
+
+wlanClientUknown5 OBJECT-TYPE
+    SYNTAX DisplayString
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "Unknown"
+    ::= { wlanClientTableEntry 5 }
+
+wlanClientUknown6 OBJECT-TYPE
+    SYNTAX INTEGER
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "Unknown"
+    ::= { wlanClientTableEntry 6 }
+
+wlanClientUknown7 OBJECT-TYPE
+    SYNTAX INTEGER
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "Unknown"
+    ::= { wlanClientTableEntry 7 }
+
+wlanClientUknown8 OBJECT-TYPE
+    SYNTAX INTEGER
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "Unknown"
+    ::= { wlanClientTableEntry 8 }
+
+wlanClientUknown9 OBJECT-TYPE
+    SYNTAX INTEGER
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "Unknown"
+    ::= { wlanClientTableEntry 9 }
+
+wlanClientUknown10 OBJECT-TYPE
+    SYNTAX INTEGER
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "Unknown"
+    ::= { wlanClientTableEntry 10 }
+
+wlanClientUknown11 OBJECT-TYPE
+    SYNTAX INTEGER
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "Unknown"
+    ::= { wlanClientTableEntry 11 }
+
+wlanClientUknown12 OBJECT-TYPE
+    SYNTAX INTEGER
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "Unknown"
+    ::= { wlanClientTableEntry 12 }
+
+END
